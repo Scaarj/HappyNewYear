@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(HappyNewYear LANGUAGES CXX)
+find_package (Threads REQUIRED)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -8,7 +9,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(Boost_USE_STATIC_LIBS        ON)  # only find static libs
 set(Boost_USE_DEBUG_LIBS         OFF) # ignore debug libs and
@@ -32,4 +33,5 @@ add_executable(HappyNewYear
 target_link_libraries(HappyNewYear
     PUBLIC
     ${Boost_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
     )
