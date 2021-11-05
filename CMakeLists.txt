@@ -26,8 +26,14 @@ if(Boost_FOUND)
     include_directories(${Boost_INCLUDE_DIRS})
 endif()
 
+file(GLOB_RECURSE SOURCE ${PROJECT_SOURCE_DIR} *.cpp)
+file(GLOB_RECURSE HEADER ${PROJECT_SOURCE_DIR} *.h)
+
+
 add_executable(HappyNewYear
   main.cpp
+  ${SOURCE}
+  ${HEADER}
 )
 
 target_link_libraries(HappyNewYear
