@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "CollorDrawer.h"
+#include "GlobalPrint.h"
 
 TreeTrunk::TreeTrunk() : Symbol('|') {}
 
@@ -12,7 +13,7 @@ TreeTrunk &TreeTrunk::operator=(const TreeTrunk &other) {}
 
 void TreeTrunk::print() {
   CollorDrawer::setColor(ColorType::Yellow);
-  std::cout << _symbol;
+  GlobalPrint::print(&_symbol);
 }
 
 int TreeTrunk::overall(const std::vector<std::unique_ptr<Symbol>> &items) {

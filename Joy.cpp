@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "CollorDrawer.h"
+#include "GlobalPrint.h"
 
 Joy::Joy() : Symbol('o') {}
 
@@ -10,7 +11,7 @@ Joy::~Joy() {}
 
 void Joy::print() {
   CollorDrawer::animate();
-  std::cout << _symbol;
+  GlobalPrint::print(&_symbol);
 }
 
 int Joy::overall(const std::vector<std::unique_ptr<Symbol>> &items) {

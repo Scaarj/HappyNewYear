@@ -3,6 +3,7 @@
 #include <algorithm>
 
 #include "CollorDrawer.h"
+#include "GlobalPrint.h"
 
 TreeItem::TreeItem() : Symbol('*') {}
 
@@ -12,7 +13,7 @@ TreeItem::TreeItem(const TreeItem &other) : Symbol(other) {}
 
 void TreeItem::print() {
   CollorDrawer::setColor(ColorType::Green);
-  std::cout << _symbol;
+  GlobalPrint::print(&_symbol);
 }
 
 int TreeItem::overall(const std::vector<std::unique_ptr<Symbol>> &items) {

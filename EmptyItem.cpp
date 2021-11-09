@@ -1,7 +1,8 @@
 #include "EmptyItem.h"
 
 #include <algorithm>
-#include <iostream>
+
+#include "GlobalPrint.h"
 
 EmptyItem::EmptyItem() : Symbol(' ') {}
 
@@ -23,4 +24,4 @@ std::unique_ptr<Item> EmptyItem::clone() {
 
 void EmptyItem::decorate(int) {}
 
-void EmptyItem::print() { std::cout << _symbol; }
+void EmptyItem::print() { GlobalPrint::print(&_symbol); }

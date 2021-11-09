@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "EmptyItem.h"
+#include "GlobalPrint.h"
 #include "TreeTrunk.h"
 
 TreeTrunkLine::TreeTrunkLine(int offset, int maxWidth) {
@@ -29,7 +30,7 @@ void TreeTrunkLine::print() {
   for (const auto &it : _items) {
     it->print();
   }
-  std::cout << std::endl;
+  GlobalPrint::printnl();
 }
 
 int TreeTrunkLine::overall(const std::vector<std::unique_ptr<Symbol>> &items) {

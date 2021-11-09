@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "EmptyItem.h"
+#include "GlobalPrint.h"
 #include "Joy.h"
 
 TreeLine::TreeLine(int offset, int width, int count) {
@@ -47,7 +48,7 @@ void TreeLine::print() {
   for (const auto &it : _items) {
     it->print();
   }
-  std::cout << std::endl;
+  GlobalPrint::printnl();
 }
 
 int TreeLine::overall(const std::vector<std::unique_ptr<Symbol>> &items) {
