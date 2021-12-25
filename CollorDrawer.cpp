@@ -5,6 +5,7 @@ bool CollorDrawer::_complete = true;
 int CollorDrawer::_iterration = 0;
 
 void CollorDrawer::setColor(ColorType color) {
+
   switch (color) {
   case ColorType::Red:
     std::cout << "\033[31m";

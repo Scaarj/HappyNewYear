@@ -11,7 +11,7 @@ public:
   EmptyItem &operator=(const EmptyItem &) = default;
 
   virtual std::unique_ptr<Item> clone() override;
-  virtual int overall(const std::vector<std::unique_ptr<Symbol>> &items);
-  virtual void decorate(int);
+  virtual int overall(const std::vector<std::unique_ptr<Symbol>> &items) override;
+  virtual void decorate(int) override;
   virtual void print() override;
 };

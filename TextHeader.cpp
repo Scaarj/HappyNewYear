@@ -16,7 +16,7 @@ TextHeader::TextHeader(int offset) {
 
   _header.push_back(happyNewYear);
   _header.push_back(whiteTime);
-  _header.push_back(std::string("\n\n\n"));
+  _header.push_back(std::string("\n"));
 }
 
 TextHeader::~TextHeader() {}

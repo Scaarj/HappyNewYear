@@ -24,4 +24,4 @@ std::unique_ptr<Item> EmptyItem::clone() {
 
 void EmptyItem::decorate(int) {}
 
-void EmptyItem::print() { GlobalPrint::print(&_symbol); }
+void EmptyItem::print() { GlobalPrint::print(_symbol); }

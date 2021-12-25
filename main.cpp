@@ -4,8 +4,6 @@
 #include <future>
 #include <iostream>
 #include <random>
-#include <sys/ioctl.h>
-#include <termios.h>
 #include <thread>
 
 #include "CollorDrawer.h"
@@ -14,6 +12,8 @@
 #include "Tree.h"
 
 #ifdef __linux__
+#include <sys/ioctl.h>
+#include <termios.h>
 static struct termios old, current;
 
 void initTermios(int echo) {
@@ -46,15 +46,24 @@ char getch(void) { return getch_(0); }
 /* Read 1 character with echo */
 char getche(void) { return getch_(1); }
 #elif _WIN32
+char getche(void) {
+	return getchar();
+}
 #else
 #endif
 
 int main() {
   srand(time(NULL));
+  int offset = 39;
+  int sectionCount = 3;
+  int maxWidth = 43;
+  int sectionDiff = 5;
+  /*
   int offset = 50;
   int sectionCount = 4;
   int maxWidth = 55;
   int sectionDiff = 5;
+*/
   Tree tree(offset, sectionCount, maxWidth, sectionDiff);
   int treeCount = tree.treeCount();
   int joyCount = treeCount / 4;
@@ -71,7 +80,11 @@ int main() {
 
   auto drawFunction = [&](std::atomic<bool> &on) -> int {
     while (on) {
-      system("clear");
+#ifdef __linux__
+	  system("clear");
+#elif _WIN32
+		if (system("CLS")) system("clear");
+#endif
       textHeader.print();
       copy.print();
       CollorDrawer::setColor(ColorType::White);
@@ -84,7 +97,7 @@ int main() {
 
   auto inputFunction = [&](std::atomic<bool> &on) -> int {
     while (on) {
-      char c = getche();
+	  char c = getche();
       switch (c) {
       case 'q':
         on = false;
@@ -102,7 +115,7 @@ int main() {
   std::future<int> f1 =
       std::async(std::launch::async, drawFunction, std::ref(on));
   std::future<int> f2 =
-      std::async(std::launch::async, inputFunction, std::ref(on));
+	  std::async(std::launch::async, inputFunction, std::ref(on));
 
   std::this_thread::sleep_for(std::chrono::milliseconds(500));
 

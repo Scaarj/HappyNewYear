@@ -13,7 +13,7 @@ TreeItem::TreeItem(const TreeItem &other) : Symbol(other) {}
 
 void TreeItem::print() {
   CollorDrawer::setColor(ColorType::Green);
-  GlobalPrint::print(&_symbol);
+  GlobalPrint::print(_symbol);
 }
 
 int TreeItem::overall(const std::vector<std::unique_ptr<Symbol>> &items) {

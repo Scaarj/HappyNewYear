@@ -11,7 +11,7 @@ Joy::~Joy() {}
 
 void Joy::print() {
   CollorDrawer::animate();
-  GlobalPrint::print(&_symbol);
+  GlobalPrint::print(_symbol);
 }
 
 int Joy::overall(const std::vector<std::unique_ptr<Symbol>> &items) {
