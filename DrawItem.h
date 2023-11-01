@@ -1,8 +1,9 @@
 #pragma once
 
-class DrawItem {
+class DrawItem
+{
 public:
-  DrawItem();
-  virtual ~DrawItem();
-  virtual void print() = 0;
+    DrawItem();
+    virtual ~DrawItem();
+    virtual void print() = 0;
 };

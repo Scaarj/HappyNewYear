@@ -5,27 +5,34 @@
 #include "CollorDrawer.h"
 #include "GlobalPrint.h"
 
-Joy::Joy() : Symbol('o') {}
+Joy::Joy()
+    : Symbol('o')
+{}
 
 Joy::~Joy() {}
 
-void Joy::print() {
-  CollorDrawer::animate();
-  GlobalPrint::print(_symbol);
+void Joy::print()
+{
+    CollorDrawer::animate();
+    GlobalPrint::print(_symbol);
 }
 
-int Joy::overall(const std::vector<std::unique_ptr<Symbol>> &items) {
-  auto isJoy = [](const std::unique_ptr<Symbol> &item) {
-    Joy joy;
-    return (*item.get()) == joy;
-  };
+int Joy::overall(const std::vector<std::unique_ptr<Symbol>> &items)
+{
+    auto isJoy = [](const std::unique_ptr<Symbol> &item) {
+        Joy joy;
+        return (*item.get()) == joy;
+    };
 
-  if (std::find_if(items.begin(), items.end(), isJoy) != items.end()) {
-    return 1;
-  }
-  return 0;
+    if (std::find_if(items.begin(), items.end(), isJoy) != items.end()) {
+        return 1;
+    }
+    return 0;
 }
 
-std::unique_ptr<Item> Joy::clone() { return std::make_unique<Joy>(*this); }
+std::unique_ptr<Item> Joy::clone()
+{
+    return std::make_unique<Joy>(*this);
+}
 
 void Joy::decorate(int) {}

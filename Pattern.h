@@ -5,9 +5,10 @@
 
 #include "Symbol.h"
 
-class Pattern {
+class Pattern
+{
 public:
-  static std::vector<std::unique_ptr<Symbol>> &tree();
-  static std::vector<std::unique_ptr<Symbol>> &joy();
-  static std::vector<std::unique_ptr<Symbol>> &treeAndJoy();
+    static std::vector<std::unique_ptr<Symbol>> &tree();
+    static std::vector<std::unique_ptr<Symbol>> &joy();
+    static std::vector<std::unique_ptr<Symbol>> &treeAndJoy();
 };

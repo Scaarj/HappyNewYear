@@ -10,7 +10,8 @@ TextHeader::TextHeader(std::string whois, int offset)
     std::string happyNewYearLine;
     std::time_t time = std::time(nullptr);
     std::tm *now = std::localtime(&time);
-    auto newYear = 1901 + now->tm_year;
+    // NOTE: base 1900 + now + next year
+    auto newYear = 1900 + now->tm_year + 1;
 
     happyNewYearLine.resize(offset);
     std::fill(happyNewYearLine.begin(), happyNewYearLine.begin() + offset, ' ');
