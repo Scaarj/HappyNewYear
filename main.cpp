@@ -81,7 +81,7 @@ int main()
     int joyCount = treeCount / 4;
     tree.decorate(joyCount);
 
-    TextHeader textHeader("My dear friend!", offset);
+    TextHeader textHeader("My dear friends!", offset);
 
     CollorDrawer::setRejime(CollorDrawer::RejimeType::Snake);
 

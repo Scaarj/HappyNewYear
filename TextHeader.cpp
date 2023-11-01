@@ -19,7 +19,7 @@ TextHeader::TextHeader(std::string whois, int offset)
     happyNewYearLine += happyNewYear;
 
     std::string honored;
-    int delta = std::abs(static_cast<int>(happyNewYear.size() - _whois.size()));
+    int delta = std::abs(static_cast<int>(happyNewYear.size() - _whois.size() + 1));
     delta = delta * (happyNewYear.size() > _whois.size() ? 1 : -1);
     auto spaceCount = offset + delta / 2;
     honored.resize(spaceCount);
