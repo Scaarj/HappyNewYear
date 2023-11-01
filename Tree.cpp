@@ -1,10 +1,11 @@
 #include "Tree.h"
 
+#include <algorithm>
+#include <cmath>
+
 #include "Pattern.h"
 #include "TreeSection.h"
 #include "TreeTrunkSection.h"
-
-#include <boost/range/adaptors.hpp>
 
 Tree::Tree() {}
 
@@ -32,10 +33,10 @@ Tree::Tree(const Tree &other) {
 void Tree::decorate(int count) {
   int sum = treeCount();
   int tempCount = count;
-  for (const auto &it : boost::adaptors::reverse(_sections)) {
+  for (const auto &it : _sections) {
     int sectionSum = it->overall(Pattern::tree());
     float ratio = static_cast<float>(sectionSum) / sum;
-    int joyToSection = ceil(ratio * count);
+    int joyToSection = std::ceil(ratio * count);
     if (joyToSection > tempCount) {
       joyToSection = tempCount;
     }

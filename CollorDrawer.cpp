@@ -1,7 +1,6 @@
 #include "CollorDrawer.h"
 
 CollorDrawer::RejimeType CollorDrawer::_rejime = CollorDrawer::RejimeType::None;
-bool CollorDrawer::_complete = true;
 int CollorDrawer::_iterration = 0;
 
 void CollorDrawer::setColor(ColorType color) {
@@ -72,12 +71,10 @@ void CollorDrawer::animate() {
   default:
     break;
   }
-  _complete = false;
 }
 
 void CollorDrawer::oneCycleComplete() {
   _iterration++;
-  _complete = true;
 }
 
 void CollorDrawer::oneColor() {

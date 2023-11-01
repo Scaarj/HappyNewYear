@@ -1,6 +1,6 @@
 #include "TreeSection.h"
 
-#include <boost/range/adaptors.hpp>
+#include <algorithm>
 #include <cmath>
 
 #include "Pattern.h"
@@ -40,7 +40,7 @@ int TreeSection::overall(const std::vector<std::unique_ptr<Symbol>> &items) {
 void TreeSection::decorate(int count) {
   int sum = overall(Pattern::tree());
   int tempCount = count;
-  for (const auto &it : boost::adaptors::reverse(_lines)) {
+  for (const auto &it : _lines) {
     int linesSum = it->overall(Pattern::tree());
     float ratio = static_cast<float>(linesSum) / sum;
     int joyToSection = ceil(ratio * count);

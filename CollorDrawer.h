@@ -35,6 +35,5 @@ public:
 
 private:
   static RejimeType _rejime;
-  static bool _complete;
   static int _iterration;
 };

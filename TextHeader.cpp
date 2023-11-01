@@ -1,28 +1,40 @@
 #include "TextHeader.h"
 
-#include <CollorDrawer.h>
+#include <cmath>
+#include <ctime>
 #include <iostream>
 
-TextHeader::TextHeader(int offset) {
-  std::string happyNewYear;
-  happyNewYear.resize(offset);
-  std::fill(happyNewYear.begin(), happyNewYear.begin() + offset, ' ');
-  happyNewYear += "Happy New Year 2022!\n";
+TextHeader::TextHeader(std::string whois, int offset)
+    : _whois(whois + "\n")
+{
+    std::string happyNewYearLine;
+    std::time_t time = std::time(nullptr);
+    std::tm *now = std::localtime(&time);
+    auto newYear = 1901 + now->tm_year;
 
-  std::string whiteTime;
-  whiteTime.resize(offset + 4);
-  std::fill(whiteTime.begin(), whiteTime.begin() + offset + 5, ' ');
-  whiteTime += "White Team\n";
+    happyNewYearLine.resize(offset);
+    std::fill(happyNewYearLine.begin(), happyNewYearLine.begin() + offset, ' ');
+    std::string happyNewYear{"Happy New Year " + std::to_string(newYear) + "!\n"};
+    happyNewYearLine += happyNewYear;
 
-  _header.push_back(happyNewYear);
-  _header.push_back(whiteTime);
-  _header.push_back(std::string("\n"));
+    std::string honored;
+    int delta = std::abs(static_cast<int>(happyNewYear.size() - _whois.size()));
+    delta = delta * (happyNewYear.size() > _whois.size() ? 1 : -1);
+    auto spaceCount = offset + delta / 2;
+    honored.resize(spaceCount);
+    std::fill(honored.begin(), honored.begin() + spaceCount, ' ');
+    honored += whois;
+
+    _header.push_back(happyNewYearLine);
+    _header.push_back(honored);
+    _header.push_back(std::string("\n"));
 }
 
 TextHeader::~TextHeader() {}
 
-void TextHeader::print() {
-  for (auto it : _header) {
-    it.print();
-  }
+void TextHeader::print()
+{
+    for (auto it : _header) {
+        it.print();
+    }
 }

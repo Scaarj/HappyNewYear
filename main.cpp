@@ -4,7 +4,6 @@
 #include <future>
 #include <iostream>
 #include <random>
-#include <thread>
 
 #include "CollorDrawer.h"
 #include "GlobalPrint.h"
@@ -69,10 +68,7 @@ int main() {
   int joyCount = treeCount / 4;
   tree.decorate(joyCount);
 
-  // just try deep copy a tree
-  Tree copy = tree;
-
-  TextHeader textHeader(offset);
+  TextHeader textHeader("My dear friend!", offset);
 
   CollorDrawer::setRejime(CollorDrawer::RejimeType::Snake);
 
@@ -80,13 +76,14 @@ int main() {
 
   auto drawFunction = [&](std::atomic<bool> &on) -> int {
     while (on) {
+      fputs("\e[?25l", stdout);
 #ifdef __linux__
 	  system("clear");
 #elif _WIN32
-		if (system("CLS")) system("clear");
+        if (system("CLS")) system("clear");
 #endif
       textHeader.print();
-      copy.print();
+      tree.print();
       CollorDrawer::setColor(ColorType::White);
       GlobalPrint::print("Press space - for change light mode, 'q' - quit\n");
       std::this_thread::sleep_for(std::chrono::milliseconds(500));
@@ -97,7 +94,7 @@ int main() {
 
   auto inputFunction = [&](std::atomic<bool> &on) -> int {
     while (on) {
-	  char c = getche();
+      char c = getche();
       switch (c) {
       case 'q':
         on = false;
@@ -115,7 +112,9 @@ int main() {
   std::future<int> f1 =
       std::async(std::launch::async, drawFunction, std::ref(on));
   std::future<int> f2 =
-	  std::async(std::launch::async, inputFunction, std::ref(on));
+      std::async(std::launch::async, inputFunction, std::ref(on));
+
+  auto f = std::async(std::launch::async, [](){});
 
   std::this_thread::sleep_for(std::chrono::milliseconds(500));
 

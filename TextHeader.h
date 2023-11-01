@@ -5,7 +5,7 @@
 
 class TextHeader : public DrawItem {
 public:
-  TextHeader(int offset);
+  TextHeader(std::string _whois, int offset);
   virtual ~TextHeader();
   TextHeader(const TextHeader &) = default;
   TextHeader &operator=(const TextHeader &) = default;
@@ -14,4 +14,5 @@ public:
 
 protected:
   std::vector<Text> _header;
+  std::string _whois;
 };
