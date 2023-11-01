@@ -1,4 +1,3 @@
 # HappyNewYear
 
-https://github.com/Scaarj/HappyNewYear/assets/25565781/017836b1-f5bc-4df8-ad99-dfaffcbd61d0
-
+https://github.com/Scaarj/HappyNewYear/assets/25565781/0892a049-b38f-4a4a-95c0-2e7d43c1105d
